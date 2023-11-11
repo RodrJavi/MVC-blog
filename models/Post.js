@@ -19,14 +19,6 @@ Post.init(
         key: "id",
       },
     },
-    username: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      references: {
-        model: "user",
-        key: "username",
-      },
-    },
     title: {
       type: DataTypes.TEXT,
       allowNull: false,
