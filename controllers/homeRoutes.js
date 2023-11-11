@@ -43,10 +43,23 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-router.get("/dashboard", withAuth, (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
+    const postData = await Post.findAll({
+      where: { user_id: req.session.user_id },
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+
     res.render("dashboard", {
       logged_in: req.session.logged_in,
+      posts,
     });
   } catch (err) {
     res.status(500).json(err);
