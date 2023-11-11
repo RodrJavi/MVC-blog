@@ -4,8 +4,22 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    res.render("homepage");
-  } catch {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render("homepage", {
+      posts,
+    });
+    console.log(posts);
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -31,7 +45,7 @@ router.get("/signup", (req, res) => {
 router.get("/dashboard", (req, res) => {
   try {
     res.render("dashboard");
-  } catch {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
