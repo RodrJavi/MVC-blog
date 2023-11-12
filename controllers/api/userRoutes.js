@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post } = require("../../models");
+const { User, Post, Comment } = require("../../models");
 
 router.post("/login", async (req, res) => {
   try {
@@ -76,6 +76,25 @@ router.post("/post", async (req, res) => {
     res.status(200).json(postData);
   } catch (error) {
     console.log(error);
+    res.status(500).json(error);
+  }
+});
+
+router.post("/comment", async (req, res) => {
+  try {
+    const commentText = req.body.commentBody;
+    const postId = req.body.postId;
+    const commentDate = req.body.commentDate;
+    const userId = req.session.user_id;
+
+    const commentData = await Comment.create({
+      user_id: userId,
+      parentPostId: postId,
+      content: commentText,
+      postDate: commentDate,
+    });
+    res.status(200).json(commentData);
+  } catch (err) {
     res.status(500).json(error);
   }
 });

@@ -20,7 +20,7 @@ Post.hasMany(Comment, {
 });
 
 Comment.belongsTo(Post, {
-  foreignKey: "post_id",
+  foreignKey: "parentPostId",
 });
 
 Comment.belongsTo(User, {

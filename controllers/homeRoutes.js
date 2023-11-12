@@ -65,4 +65,28 @@ router.get("/dashboard", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get("/post/:postId", withAuth, async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const postData = await Post.findOne({
+      where: { id: postId },
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    const singlePost = postData.get({ plain: true });
+
+    res.render("post-view", {
+      logged_in: req.session.logged_in,
+      singlePost,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;
