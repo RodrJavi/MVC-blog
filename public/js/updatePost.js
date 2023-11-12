@@ -21,6 +21,22 @@ const postUpdateFormHandler = async (event) => {
   }
 };
 
+const deletePost = async () => {
+  const postId = window.location.pathname.split("/").pop();
+  const response = await fetch(`/api/users/post/${postId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    window.location.replace("/dashboard");
+  } else {
+    alert("Error when deleting the post!");
+  }
+};
+
 document
   .querySelector("#post-update-form")
   .addEventListener("submit", postUpdateFormHandler);
+
+document.querySelector("#post-delete").addEventListener("click", deletePost);

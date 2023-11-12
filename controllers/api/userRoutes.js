@@ -102,6 +102,21 @@ router.put("/post/:postId", async (req, res) => {
   }
 });
 
+router.delete("/post/:postId", async (req, res) => {
+  try {
+    const userId = req.session.user_id;
+    const postData = await Post.destroy({
+      where: {
+        id: req.params.postId,
+      },
+    });
+    res.status(200).json({ message: "Post deleted!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
 router.post("/comment", async (req, res) => {
   try {
     const commentText = req.body.commentBody;
