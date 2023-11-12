@@ -1,9 +1,12 @@
 <div>
   <h2>Edit Post</h2>
-  <form>
+  <form id="post-update-form">
     <label for="Title">Title</label>
-    <input type="text" name="Title" id="post-title" placeholder={{title}}>
+    <input type="text" name="Title" id="post-title" value="{{singlePost.title}}">
     <label for="Content">Content</label>
-    <input type="text" name="Content" id="post-content" placeholder={{content}}>
+    <input type="text" name="Content" id="post-body" value="{{singlePost.content}}">
+    <button type="submit">Update post</button>
   </form>
 </div>
+
+<script src="/js/updatePost.js"></script>

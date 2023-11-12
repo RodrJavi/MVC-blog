@@ -112,4 +112,28 @@ router.get("/dashboard/create-post", withAuth, async (req, res) => {
   }
 });
 
+router.get("/dashboard/edit-post/:postId", withAuth, async (req, res) => {
+  const postId = req.params.postId;
+  const postData = await Post.findOne({
+    where: { id: postId },
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  });
+
+  const singlePost = postData.get({ plain: true });
+
+  try {
+    res.render("post-edit", {
+      logged_in: req.session.logged_in,
+      singlePost,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

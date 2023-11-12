@@ -80,6 +80,28 @@ router.post("/post", async (req, res) => {
   }
 });
 
+router.put("/post/:postId", async (req, res) => {
+  try {
+    const userId = req.session.user_id;
+    const postData = await Post.update(
+      {
+        title: req.body.postTitle,
+        content: req.body.postBody,
+        postDate: req.body.postDate,
+      },
+      {
+        where: {
+          id: req.params.postId,
+        },
+      }
+    );
+    res.status(200).json(postData);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
 router.post("/comment", async (req, res) => {
   try {
     const commentText = req.body.commentBody;

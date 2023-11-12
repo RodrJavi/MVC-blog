@@ -1,13 +1,14 @@
-const postFormHandler = async (event) => {
+const postUpdateFormHandler = async (event) => {
   event.preventDefault();
 
+  const postId = window.location.pathname.split("/").pop();
   const postTitle = document.querySelector("#post-title").value.trim();
   const postBody = document.querySelector("#post-body").value.trim();
   const postDate = new Date();
 
   if (postBody && postTitle) {
-    const response = await fetch("/api/users/post", {
-      method: "POST",
+    const response = await fetch(`/api/users/post/${postId}`, {
+      method: "PUT",
       body: JSON.stringify({ postTitle, postBody, postDate }),
       headers: { "Content-Type": "application/json" },
     });
@@ -15,11 +16,11 @@ const postFormHandler = async (event) => {
     if (response.ok) {
       window.location.replace("/dashboard");
     } else {
-      alert("Error when making the post!");
+      alert("Error when updating the post!");
     }
   }
 };
 
 document
-  .querySelector("#post-form")
-  .addEventListener("submit", postFormHandler);
+  .querySelector("#post-update-form")
+  .addEventListener("submit", postUpdateFormHandler);
