@@ -1,0 +1,102 @@
+body {
+  background-color: rgb(85, 172, 85);
+  font-family: sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: burlywood;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links li {
+  padding: 0 10px;
+  font-size: 20px;
+  color: purple;
+}
+
+.post-container {
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: rgb(150, 221, 150);
+}
+
+.post-list-container {
+  padding: 10px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: burlywood;
+}
+
+.post-info {
+  font-size: 20px;
+}
+
+.post-preview-container {
+  border: 3px solid black;
+  padding: 25px 50px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  background-color: rgb(150, 221, 150);
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button {
+  background-color: darkorange;
+  border: 2px solid black;
+}
+
+.dashboard-title {
+  color: black;
+  font-weight: bold ;
+}
+
+.single-post-container {
+  border: 5px solid black;
+  margin: 30px 0px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  gap: 20px
+}
+.comment-field {
+  width: 300px;
+  height: 250px;
+}
+
+.edit-field {
+  width: 250px;
+  height: 100px;
+}
+
+.post-body {
+  background-color: rgb(150, 221, 150);
+}

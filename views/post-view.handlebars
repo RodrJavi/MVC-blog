@@ -1,15 +1,15 @@
 <div>
-  <div>
-    <div>
+  <div class="single-post-container post-body">
+    <div class="post-header">
       <h2>{{singlePost.title}}</h2>
       <span>Posted by {{singlePost.user.username}} on {{displayDate singlePost.postDate}}</span>
     </div>
     <p>{{singlePost.content}}</p>
   </div>
   <div>
-    <form id="comment-form">
+    <form class="comment-form" id="comment-form">
       <label for="Comment">Comment</label>
-      <input type="text" name="Comment" id="comment-body">
+      <input class="comment-field" type="text" name="Comment" id="comment-body">
       <button type="submit">Submit</button>
     </form>
   </div>

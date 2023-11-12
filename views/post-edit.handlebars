@@ -1,10 +1,12 @@
-<div>
-  <h2>Edit Post</h2>
+<div  class="single-post-container">
+  <div class="post-header">
+    <h2>Edit Post</h2>
+  </div>
   <form id="post-update-form">
     <label for="Title">Title</label>
-    <input type="text" name="Title" id="post-title" value="{{singlePost.title}}">
+    <input class="edit-field" type="text" name="Title" id="post-title" value="{{singlePost.title}}">
     <label for="Content">Content</label>
-    <input type="text" name="Content" id="post-body" value="{{singlePost.content}}">
+    <input class="edit-field" type="text" name="Content" id="post-body" value="{{singlePost.content}}">
     <button type="submit">Update post</button>
   </form>
   <button id="post-delete">DELETE POST</button>
