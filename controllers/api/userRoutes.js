@@ -69,8 +69,8 @@ router.post("/post", async (req, res) => {
     // Post query to be added to the database
     const postData = await Post.create({
       user_id: userId,
-      title: req.body.title,
-      content: req.body.content,
+      title: req.body.postTitle,
+      content: req.body.postBody,
       postDate: req.body.postDate,
     });
     res.status(200).json(postData);

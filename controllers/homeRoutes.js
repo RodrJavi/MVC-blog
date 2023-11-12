@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post } = require("../models");
+const { User, Post, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -80,13 +80,36 @@ router.get("/post/:postId", withAuth, async (req, res) => {
     });
 
     const singlePost = postData.get({ plain: true });
+    // const commentData = await Comment.findAll({
+    //   where: { parentPostId: postId },
+    //   include: [
+    //     {
+    //       model: User,
+    //       attributes: ["username"],
+    //     },
+    //   ],
+    // });
+
+    // const postComments = commentData.get({ plain: true });
 
     res.render("post-view", {
       logged_in: req.session.logged_in,
       singlePost,
+      // postComments,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+router.get("/dashboard/create-post", withAuth, async (req, res) => {
+  try {
+    res.render("post-create", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

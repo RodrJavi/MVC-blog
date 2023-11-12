@@ -13,6 +13,11 @@
       <button type="submit">Submit</button>
     </form>
   </div>
+  {{#if postComments}}
+  {{#each postComments}}
+  {{> comment}}
+  {{/each}}
+  {{/if}}
 </div>
 
 <script src="/js/comment.js"></script>
